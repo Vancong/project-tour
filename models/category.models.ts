@@ -1,7 +1,7 @@
 import { DataTypes } from "sequelize";
 import sequelize from "../config/database.config";
-const tourDtb = sequelize.define(
-    "Tour",
+const categoryDtb = sequelize.define(
+    "Category",
     {
         id: {
             type: DataTypes.INTEGER,
@@ -13,29 +13,11 @@ const tourDtb = sequelize.define(
             type: DataTypes.STRING(255),
             allowNull: false,
         },
-        code: {
-            type: DataTypes.STRING(10),
+        image: {
+            type: DataTypes.STRING(500),
         },
-        images: {
+        description: {
             type: DataTypes.TEXT("long"),
-        },
-        price: {
-            type: DataTypes.INTEGER,
-        },
-        discount: {
-            type: DataTypes.INTEGER,
-        },
-        information: {
-            type: DataTypes.TEXT("long"),
-        },
-        schedule: {
-            type: DataTypes.TEXT("long"),
-        },
-        timeStart: {
-            type: DataTypes.DATE,
-        },
-        stock: {
-            type: DataTypes.INTEGER,
         },
         status: {
             type: DataTypes.STRING(20),
@@ -56,8 +38,8 @@ const tourDtb = sequelize.define(
         },
     },
     {
-        tableName: "tours",
+        tableName: "categories",
         timestamps: true, // Tự động quản lý createdAt và updatedAt
     }
 );
-export default tourDtb;
+export default categoryDtb;
