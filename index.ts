@@ -13,8 +13,21 @@ app.use(express.static("public")); // thu muc tinh
 import sequelize from "./config/database.config";
 sequelize;
 
-app.get("/tour", (req, res) => {
-    res.render("client/page/tour");
+import tourDtb from "./models/tour.models";
+
+app.get("/tour", async (req, res) => {
+    const tours = await tourDtb.findAll({
+        where: {
+            status: "active",
+            deleted: false,
+        },
+        raw: true,
+    });
+
+    res.render("client/page/tour/index.pug", {
+        pageTitle: "Danh sách tour",
+        tours: tours,
+    });
 });
 
 app.listen(port, () => {
