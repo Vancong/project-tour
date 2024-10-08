@@ -75,6 +75,22 @@ if (formCart) {
 
 //end cart
 
+const deleteItemCart = () => {
+    const btnDltCart = document.querySelectorAll("[btn-delete]");
+    if (btnDltCart.length > 0) {
+        btnDltCart.forEach(button => {
+            button.addEventListener("click", () => {
+                const tourId = button.getAttribute("btn-delete");
+                const cart = JSON.parse(localStorage.getItem("cart"));
+                const newCart = cart.filter(item => item.tourId != tourId);
+                localStorage.setItem("cart", JSON.stringify(newCart));
+                window.location.reload();
+            })
+        });
+    }
+
+}
+
 //gui data cart len backend
 const tableCart = document.querySelector("[table-cart]");
 if (tableCart) {
@@ -114,8 +130,11 @@ if (tableCart) {
 
             const tbody = tableCart.querySelector("tbody");
             tbody.innerHTML = htmlArray.join("");
+            deleteItemCart();
 
             const totalPrice = document.querySelector("[total-price]");
             totalPrice.innerHTML = data.total.toLocaleString();
         })
+
+
 }

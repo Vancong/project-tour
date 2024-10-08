@@ -27,11 +27,14 @@ export const listJson = async (req: Request, res: Response) => {
         tour["title"] = infoTour["title"];
         tour["slug"] = infoTour["slug"];
         tour["price"] = infoTour["price"];
+
         if (infoTour["discount"] > 0) {
             tour["price"] =
                 (1 - infoTour["discount"] / 100) * infoTour["price"];
         }
-        tour["total"] = infoTour["price"] * tour["quantity"];
+
+        tour["total"] = tour["price"] * tour["quantity"];
+
         total += tour["total"];
     }
     res.json({
