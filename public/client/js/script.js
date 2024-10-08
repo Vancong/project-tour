@@ -21,7 +21,6 @@ if (tourImage) {
 //alert
 const alertAddCart = () => {
     const alert = document.querySelector('[alert-add-cart-susscess]');
-    console.log(alert);
     if (alert) {
         alert.classList.remove("alert-hidden");
         setTimeout(() => {
@@ -29,6 +28,17 @@ const alertAddCart = () => {
         }, 3000)
     }
 };
+
+//hien thi so luong tour trong cart
+const showMiniCart = () => {
+    const miniCart = document.querySelector("[mini-cart]");
+    if (miniCart) {
+        const cart = JSON.parse(localStorage.getItem("cart"));
+        miniCart.innerHTML = cart.length;
+
+    }
+}
+showMiniCart();
 
 const cart = localStorage.getItem("cart");
 if (!cart) {
@@ -56,6 +66,7 @@ if (formCart) {
 
             localStorage.setItem("cart", JSON.stringify(cart));
             alertAddCart();
+            showMiniCart();
         }
     })
 }
