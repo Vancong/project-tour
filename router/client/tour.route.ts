@@ -3,6 +3,6 @@ const router = express.Router();
 
 import * as tourControllers from "../../controllers/client/tour.controllers";
 
-router.get("/", tourControllers.index);
+router.get("/:slugCategory", tourControllers.index);
 
 export const tourRoute = router;

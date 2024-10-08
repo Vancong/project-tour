@@ -11,7 +11,7 @@ export const index = async (req: Request, res: Response) => {
         },
         raw: true,
     });
-    console.log(categories);
+
     res.render("client/page/categories/index.pug", {
         pageTitle: "Danh muc tour",
         categories: categories,
