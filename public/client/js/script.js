@@ -17,14 +17,28 @@ if (tourImage) {
 }
 
 //cart
+
+//alert
+const alertAddCart = () => {
+    const alert = document.querySelector('[alert-add-cart-susscess]');
+    console.log(alert);
+    if (alert) {
+        alert.classList.remove("alert-hidden");
+        setTimeout(() => {
+            alert.classList.add("alert-hidden");
+        }, 3000)
+    }
+};
+
 const cart = localStorage.getItem("cart");
 if (!cart) {
     localStorage.setItem("cart", JSON.stringify([]));
 }
-const formCart = document.querySelector('[form-add-to-cart]');
+const formCart = document.querySelector("[form-add-to-cart]");
 if (formCart) {
     formCart.addEventListener("submit", (event) => {
         event.preventDefault();
+
         const tourId = parseInt(formCart.getAttribute("tour-id"));
         const quantity = parseInt(formCart.quantity.value);
         if (tourId && quantity > 0) {
@@ -41,9 +55,9 @@ if (formCart) {
 
 
             localStorage.setItem("cart", JSON.stringify(cart));
+            alertAddCart();
         }
     })
 }
-
 
 //end cart
