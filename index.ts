@@ -1,5 +1,5 @@
 import express, { Express } from "express";
-
+import bodyParser from "body-parser";
 const app: Express = express();
 const port: number = 3000;
 import dotenv from "dotenv";
@@ -13,7 +13,8 @@ app.use(express.static("public")); // thu muc tinh
 import sequelize from "./config/database.config";
 sequelize;
 
-import tourDtb from "./models/tour.models";
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 
 import { RouteClient } from "./router/client/index.route";
 RouteClient(app);
