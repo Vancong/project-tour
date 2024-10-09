@@ -75,6 +75,30 @@ if (formCart) {
 
 //end cart
 
+//change so luong tour
+const changeTour = () => {
+    const ipTour = document.querySelectorAll("[item-id]");
+    ipTour.forEach(ip => {
+        ip.addEventListener("change", () => {
+            const quantity = ip.value;
+            const id = ip.getAttribute("item-id");
+            const cart = JSON.parse(localStorage.getItem("cart"));
+            const existTour = cart.find(item => item.tourId == id)
+            if (existTour && quantity > 0) {
+                existTour.quantity = quantity;
+                localStorage.setItem("cart", JSON.stringify(cart));
+                window.location.reload();
+
+            }
+
+        })
+    });
+}
+
+
+
+
+//ham xoa tour
 const deleteItemCart = () => {
     const btnDltCart = document.querySelectorAll("[btn-delete]");
     if (btnDltCart.length > 0) {
@@ -131,6 +155,7 @@ if (tableCart) {
             const tbody = tableCart.querySelector("tbody");
             tbody.innerHTML = htmlArray.join("");
             deleteItemCart();
+            changeTour();
 
             const totalPrice = document.querySelector("[total-price]");
             totalPrice.innerHTML = data.total.toLocaleString();
